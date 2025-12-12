@@ -1,41 +1,31 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Damejidlo\ACL;
 
 use Exception;
 use Nette\Security\IResource;
 use RuntimeException;
 
-
-
 class RoleDoesNotExists extends RuntimeException
 {
-
 }
-
-
 
 class ResourceDoesNotExists extends RuntimeException
 {
-
 }
-
-
 
 class NotAllowedException extends Exception
 {
-
 	/**
 	 * @var IResource
 	 */
 	private $resource;
-
 	/**
 	 * @var string
 	 */
 	private $privilege;
-
-
 
 	/**
 	 * @param IResource $resource
@@ -43,11 +33,10 @@ class NotAllowedException extends Exception
 	 */
 	public function __construct(IResource $resource, $privilege)
 	{
+		parent::__construct("Access denied to resource '$resource' with privilege '$privilege'.");
 		$this->resource = $resource;
 		$this->privilege = $privilege;
 	}
-
-
 
 	/**
 	 * @return IResource
@@ -57,8 +46,6 @@ class NotAllowedException extends Exception
 		return $this->resource;
 	}
 
-
-
 	/**
 	 * @return string
 	 */
@@ -66,5 +53,4 @@ class NotAllowedException extends Exception
 	{
 		return $this->privilege;
 	}
-
 }

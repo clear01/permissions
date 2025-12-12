@@ -1,48 +1,41 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Damejidlo\ACL;
 
 use Closure;
 use Nette\Security\IResource;
 use Nette\Security\IRole;
 use Nette\SmartObject;
-
-
+use function bdump;
 
 class Directive
 {
-
 	use SmartObject;
 
 	public const ALLOW = 'allow';
 	public const DENY = 'deny';
-
 	/**
 	 * @var IRole[]string[]
 	 */
-	private $roles;
-
+	private array $roles = [];
 	/**
 	 * @var string[]
 	 */
-	private $resources;
-
+	private array $resources = [];
 	/**
 	 * @var string[]
 	 */
-	private $privileges;
-
+	private array $privileges = [];
 	/**
 	 * @var Closure|NULL
 	 */
 	private $assertion;
-
 	/**
 	 * @var string
 	 */
 	private $directiveType;
-
-
 
 	/**
 	 * @param string $directiveType
@@ -57,15 +50,14 @@ class Directive
 		array $resources,
 		array $privileges,
 		?Closure $assertion = NULL
-	) {
+	)
+	{
 		$this->roles = $roles;
 		$this->resources = $resources;
 		$this->privileges = $privileges;
 		$this->assertion = $assertion;
 		$this->directiveType = $directiveType;
 	}
-
-
 
 	/**
 	 * @param IUser $user
@@ -79,6 +71,7 @@ class Directive
 			foreach ($user->getRoles() as $usersRole) {
 				$roleId = Stringify::stringifyRole($role);
 				$usersRoleId = Stringify::stringifyRole($usersRole);
+				bdump([$roleId, $usersRoleId]);
 
 				if ($roleId === $usersRoleId) {
 					$queried = $this->isResourceQueried($resource) && $this->isPrivilegeQueried($privilege);
@@ -92,8 +85,6 @@ class Directive
 		return FALSE;
 	}
 
-
-
 	/**
 	 * @return string
 	 */
@@ -101,8 +92,6 @@ class Directive
 	{
 		return $this->directiveType;
 	}
-
-
 
 	/**
 	 * @param IResource|string $usersResource
@@ -121,8 +110,6 @@ class Directive
 		return FALSE;
 	}
 
-
-
 	/**
 	 * @param string $privilege
 	 * @return bool
@@ -131,5 +118,4 @@ class Directive
 	{
 		return in_array($privilege, $this->privileges, TRUE);
 	}
-
 }

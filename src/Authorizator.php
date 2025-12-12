@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Damejidlo\ACL;
 
 use Closure;
@@ -7,29 +9,22 @@ use Nette\Security\IResource;
 use Nette\Security\IRole;
 use Nette\SmartObject;
 
-
-
 class Authorizator implements IAuthorizator
 {
-
 	use SmartObject;
 
 	/**
 	 * @var Directive[]
 	 */
-	protected $directives = [];
-
+	protected array $directives = [];
 	/**
 	 * @var string[]
 	 */
-	protected $roles = [];
-
+	protected array $roles = [];
 	/**
 	 * @var string[]
 	 */
-	protected $resources = [];
-
-
+	protected array $resources = [];
 
 	/**
 	 * @inheritdoc
@@ -59,8 +54,6 @@ class Authorizator implements IAuthorizator
 		return $carry;
 	}
 
-
-
 	/**
 	 * @inheritdoc
 	 */
@@ -69,8 +62,6 @@ class Authorizator implements IAuthorizator
 		$this->createDirective(Directive::ALLOW, $roles, $resources, $privileges, $assertion);
 	}
 
-
-
 	/**
 	 * @inheritdoc
 	 */
@@ -78,8 +69,6 @@ class Authorizator implements IAuthorizator
 	{
 		$this->createDirective(Directive::DENY, $roles, $resources, $privileges, $assertion);
 	}
-
-
 
 	/**
 	 * @param IRole|string $role
@@ -92,8 +81,6 @@ class Authorizator implements IAuthorizator
 		}, $parentRoles);
 	}
 
-
-
 	/**
 	 * @param IResource|string $resource
 	 */
@@ -102,8 +89,6 @@ class Authorizator implements IAuthorizator
 		$resourceId = Stringify::stringifyResource($resource);
 		$this->resources[$resourceId] = $resourceId;
 	}
-
-
 
 	/**
 	 * @param string $directiveType
@@ -123,8 +108,6 @@ class Authorizator implements IAuthorizator
 		$this->directives[] = new Directive($directiveType, $roles, $resources, $privileges, $assertion);
 	}
 
-
-
 	/**
 	 * @param IRole[]|string[] $roles
 	 * @param string[] $resources
@@ -134,8 +117,6 @@ class Authorizator implements IAuthorizator
 		$this->validateRoles($roles);
 		$this->validateResources($resources);
 	}
-
-
 
 	/**
 	 * @param IRole[]|string[] $roles
@@ -150,8 +131,6 @@ class Authorizator implements IAuthorizator
 		}
 	}
 
-
-
 	/**
 	 * @param string[] $resources
 	 */
@@ -164,5 +143,4 @@ class Authorizator implements IAuthorizator
 			}
 		}
 	}
-
 }

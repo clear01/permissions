@@ -1,41 +1,41 @@
 {
-	"name": "clear01/permissions",
-	"description": "",
-	"type": "library",
-	"license": "MIT",
-	"keywords": [
-		"security",
-		"acl",
-		"nette",
-		"permission"
-	],
-	"authors": [
-		{
-			"name": "damejidlo.cz s.r.o.",
-			"homepage": "https://www.damejidlo.cz/"
-		},
-		{
-			"name": "Petr Hejna",
-			"homepage": "http://petrhejna.org",
-			"email": "hejna.peter@gmail.com"
-		}
-	],
-	"require": {
-		"nette/security": "^3.0",
-		"php": ">=7.1",
-		"nette/utils": "^4.0"
-	},
-	"require-dev": {
-		"damejidlo/coding-standard": "^0.10.0",
-		"nette/tester": "^2.2",
-		"mockery/mockery": "^1.2"
-	},
-	"autoload": {
-		"psr-4": {
-			"Damejidlo\\ACL\\": "src/"
-		},
-		"classmap": [
-			"src/exceptions.php"
-		]
-	}
+  "name": "clear01/permissions",
+  "description": "",
+  "type": "library",
+  "license": "MIT",
+  "keywords": [
+    "security",
+    "acl",
+    "nette",
+    "permission"
+  ],
+  "authors": [
+    {
+      "name": "damejidlo.cz s.r.o.",
+      "homepage": "https://www.damejidlo.cz/"
+    },
+    {
+      "name": "Petr Hejna",
+      "homepage": "http://petrhejna.org",
+      "email": "hejna.peter@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=8.3",
+    "nette/security": "^3.0",
+    "nette/utils": "^4.0"
+  },
+  "require-dev": {
+    "damejidlo/coding-standard": "^0.10.0",
+    "nette/tester": "^2.2",
+    "mockery/mockery": "^1.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "Damejidlo\\ACL\\": "src/"
+    },
+    "classmap": [
+      "src/exceptions.php"
+    ]
+  }
 }
