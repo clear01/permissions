@@ -25,11 +25,6 @@
     "nette/security": "^3.0",
     "nette/utils": "^4.0"
   },
-  "require-dev": {
-    "damejidlo/coding-standard": "^0.10.0",
-    "nette/tester": "^2.2",
-    "mockery/mockery": "^1.2"
-  },
   "autoload": {
     "psr-4": {
       "Damejidlo\\ACL\\": "src/"
